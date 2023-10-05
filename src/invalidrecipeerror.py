@@ -1,0 +1,2 @@
+class InvalidRecipeError(Exception):
+    pass
