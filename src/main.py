@@ -2,7 +2,7 @@ from src.search import Search
 
 
 def main():
-    search = Search("how to make chicken tonkatsu")
+    search = Search("how to make slow cooked beef")
     search.search()
 
 if __name__ == "__main__":
