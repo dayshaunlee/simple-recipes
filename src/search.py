@@ -3,17 +3,15 @@ import requests
 
 from src.rating import Rating
 from src.recipe import Recipe
+from src.webdata import WebData
 
 
 # A search query with results that are recipes
 class Search:
     SEARCH_STRING = "https://www.google.com/search?hl=en&q="
 
-    # user-agent so Google doesn't block the search
-    headers = {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
-                      "Chrome/117.0.0.0 Safari/537.36"
-    }
+    headers = WebData.headers
+    valid_sites = WebData.valid_sites
 
     def __init__(self, query):
         self.query = query
@@ -22,9 +20,6 @@ class Search:
 
         source = requests.get(self.url, headers=self.headers).text
         self.soup = BeautifulSoup(source, "lxml")
-
-        with open("./valid_websites.txt", 'r') as f:
-            self.valid_sites = [x for x in f.read().strip().splitlines()]
 
         # print(self.soup.prettify())
 
