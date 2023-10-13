@@ -5,6 +5,6 @@ class WebData():
                       "Chrome/117.0.0.0 Safari/537.36"
     }
 
-    # valid recipe website
+    # valid recipe websites
     with open("./valid_websites.txt", 'r') as f:
         valid_sites = [x for x in f.read().strip().splitlines()]

@@ -29,7 +29,8 @@ class Search:
             url = site.a["href"]
             rating_data = site.find("div", class_="smukrd")
             # check if the site is a recipe website and has a star-rating
-            if any(map(lambda s: url.startswith(s), self.valid_sites)) and rating_data is not None:
+            if any(map(lambda s: url.startswith(s), self.valid_sites)) and rating_data is not None\
+                    and rating_data.text.startswith("Rating"):
                 # parse rating data and create a rating
                 rating_data = rating_data.text
                 score = float(rating_data.split(" · ")[0].split(": ")[-1])
