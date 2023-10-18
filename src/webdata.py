@@ -1,3 +1,6 @@
+from pathlib import Path
+
+
 class WebData():
     # user-agent so Google doesn't block the search
     headers = {
@@ -6,5 +9,6 @@ class WebData():
     }
 
     # valid recipe websites
-    with open("./valid_websites.txt", 'r') as f:
+    path = Path(__file__).resolve().parents[1] / "src" / "valid_websites.txt"
+    with open(path, 'r') as f:
         valid_sites = [x for x in f.read().strip().splitlines()]

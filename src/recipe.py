@@ -12,13 +12,14 @@ class Recipe:
                       "Chrome/117.0.0.0 Safari/537.36"
     }
 
-    def __init__(self, url: str, rating: Rating, time: int):
+    def __init__(self, url: str, rating: Rating, time: int, author: str):
         self.url = url
 
         source = requests.get(self.url, headers=self.headers).text
         self.soup = BeautifulSoup(source, "lxml")
 
         self.title = self.soup.find("title").text
+        self.author = author
         self.rating = rating
         self.time = time  # time in minutes
         self.ingredients = []
@@ -87,7 +88,7 @@ class Recipe:
                 "li", {"class": "structured-ingredients__list-item"})
             for i in ingredients_data:
                 self.ingredients.append(i.text.strip("\n").strip().replace("\xa0", " "))
-        print(self.ingredients)  # TODO for debugging, remove later
+        # print(self.ingredients)  # TODO for debugging, remove later
 
     def init_servings(self):
         # allrecipes.com
@@ -199,7 +200,7 @@ class Recipe:
                 "li")
             for s in steps_data:
                 self.steps.append(s.p.text.strip())
-        print(self.steps)  # TODO for debugging, remove later
+        # print(self.steps)  # TODO for debugging, remove later
 
     def __repr__(self):
-        return (f"URL: {self.url} \n Title: {self.title} \n Rating: {repr(self.rating)} \n Time: {self.time} mins")
+        return (f"URL: {self.url} \n Title: {self.title} \n Author: {self.author} \n Rating: {repr(self.rating)} \n Time: {self.time} mins")

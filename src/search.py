@@ -27,6 +27,7 @@ class Search:
         sites = self.soup.select("div.g")
         for site in sites:
             url = site.a["href"]
+            author = site.find("span", {"class": "VuuXrf"}).text
             rating_data = site.find("div", class_="smukrd")
             # check if the site is a recipe website and has a star-rating
             if any(map(lambda s: url.startswith(s), self.valid_sites)) and rating_data is not None\
@@ -46,5 +47,8 @@ class Search:
                 mins = int(time_data[-1].split(" ")[0])
                 time = hrs * 60 + mins
 
-                self.results[url] = Recipe(url, rating, time)
-        print(self.results)
+                self.results[url] = Recipe(url, rating, time, author)
+        # print(self.results) # TODO for debugging, remove later
+
+    def select(self, url):
+        return self.results[url]
