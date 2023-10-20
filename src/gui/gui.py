@@ -14,8 +14,6 @@ class App(ctk.CTk):
         self.select_page("home")
 
     def select_page(self, page):
-        # TODO remove elements first
-
         if page == "home":
             self.to_home()
         if page == "search":
@@ -85,7 +83,6 @@ class SearchPage(ctk.CTkFrame):
         self.label = ctk.CTkLabel(self, width=150, height=30, text="Noodle", text_color="#FCE4B1",
                                   font=("Product Sans", 20))
         self.label.grid(row=0, column=0, padx=(5, 25), pady=(0, 10))
-        # TODO add a button on this to go back to home page
 
         self.entry = ctk.CTkEntry(self, width=580, height=50, corner_radius=30, font=("Arial", 12))
         self.entry.grid(row=0, column=1, padx=(5, 8), pady=(10, 14), sticky="ew")
@@ -223,7 +220,3 @@ class RecipePage(ctk.CTkFrame):
                     if font_size < 5:
                         font_size = 10
                     ste.configure(font=("Arial", font_size))
-
-
-app = App()
-app.mainloop()

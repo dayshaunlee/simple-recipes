@@ -1,9 +1,9 @@
-from src.search import Search
+from src.gui.gui import App
 
 
 def main():
-    search = Search("how to make chicken tonkatsu")
-    search.search()
+    app = App()
+    app.mainloop()
 
 
 if __name__ == "__main__":
