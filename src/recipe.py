@@ -137,7 +137,7 @@ class Recipe:
             servings_data = self.soup.find("div", {"class": "loc recipe-serving project-meta__recipe-serving"}).find(
                 "span", {"class": "meta-text__data"}).text
             self.servings = int(servings_data.split(" ")[0])
-        print(self.servings)  # TODO for debugging, remove later
+        # print(self.servings)  # TODO for debugging, remove later
 
     def init_steps(self):
         # allrecipes.com, foodandwine.com
